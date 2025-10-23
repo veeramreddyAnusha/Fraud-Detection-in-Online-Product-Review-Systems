@@ -1,0 +1,228 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>Adding Categories..</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link href="css/style.css" rel="stylesheet" type="text/css" />
+<link rel="stylesheet" type="text/css" href="css/coin-slider.css" />
+<script type="text/javascript" src="js/cufon-yui.js"></script>
+<script type="text/javascript" src="js/cufon-aller.js"></script>
+<script type="text/javascript" src="js/jquery-1.4.2.min.js"></script>
+<script type="text/javascript" src="js/script.js"></script>
+<script type="text/javascript" src="js/coin-slider.min.js"></script>
+<style type="text/css">
+<!--
+.style8 {font-size: 20px}
+.style17 {font-size: 32px; color: #FF6600; }
+.style23 {font-size: 26px;
+	color: #FF00FF;
+}
+.style4 {color: #009900;
+	font-size: 15px;
+	font-weight: bold;
+}
+.style7 {color: #FF0000; font-size: 14px; }
+.style5 {color: #66CCFF;
+	font-size: 21px;
+	font-weight: bold;
+}
+.style68 {font-family: Arial, Helvetica, sans-serif}
+.style69 {font-size: 13px}
+.style72 {color: #0000FF}
+.style75 {	color: #009900;
+	font-size: 26px;
+}
+.style84 {	color: #FF0000;
+	font-size: 13px;
+}
+.style85 {color: #FF0000}
+.style86 {color: #FF00FF}
+.style87 {	font-family: "Courier New", Courier, monospace;
+	font-size: 18px;
+}
+.style11 {color: #0000FF;
+	font-weight: bold;
+}
+.style18 {font-size: 18px; color: #FF6600; }
+-->
+</style>
+</head>
+<body>
+<div class="main">
+  <div class="header">
+    <div class="header_resize">
+      <div class="menu_nav">
+        <ul>
+          <li><a href="index.html"><span>Home </span></a></li>
+          <li><a href="UserLogin.jsp"><span>User</span></a></li>
+          <li class="active"><a href="AdminLogin.jsp"><span>ESeller</span></a></li>
+        </ul>
+      </div>
+      <div class="logo style8">
+        <p class="style17"><span class="style18">Mining Users Trust From E-Commerce Reviews Based on Sentiment Similarity Analysis</span></p>
+        <p class="style17"> </p>
+      </div>
+      <div class="clr"></div>
+      <div class="slider">
+        <div id="coin-slider"> <a href="#"><img src="images/slide1.jpg" width="940" height="271" alt="" /> </a> <a href="#"><img src="images/slide2.jpg" width="940" height="271" alt="" /> </a> <a href="#"><img src="images/slide3.jpg" width="940" height="271" alt="" /> </a> </div>
+      </div>
+      <div class="clr"></div>
+    </div>
+  </div>
+  <div class="content">
+    <div class="content_resize">
+      <div class="mainbar">
+        <div class="article">
+          <h2><span class="style23">Add and View Categories.. </span></h2>
+          <p class="infopost">&nbsp;</p>
+          <div class="clr"></div>
+            <form action="A_AddCategory.jsp" method="post">
+              <p>&nbsp;</p>
+              <table width="415" border="0" align="center" cellpadding="2" cellspacing="2">
+                <tr>
+                  <td  width="173" height="58" valign="middle" style="color: #2c83b0;"><div align="left" class="style7 style15 style18 style21 style4" style="margin-left:20px;">
+                    <div align="center">Category Name </div>
+                  </div></td>
+                  <td  width="228" height="58" valign="middle" style="color:#000000;"><label>
+                    <input type="text" name="category" />
+                  </label></td>
+                </tr>
+                <tr>
+                  <td height="30" colspan="2" id="learn_more" align="center"  style="color:#FFFFFF;"><input name="submit" type="submit" style="width:100px; height:25px; background-color:#000000; color:#FFFFFF;" value="Add"/></td>
+                </tr>
+              </table>
+              <p align="right"><a href="AdminMain.jsp" class="style11">Back</a>                </p>
+            </form>
+          <div class="clr"></div>
+        </div>
+        <div class="article">
+          <h2>
+            <%@ include file="connect.jsp" %>
+            <%
+		try
+		{		
+		 %>
+</h2>
+          <h2><span class="style75">Added Categories.. </span></h2>
+          <p class="infopost">&nbsp;</p>
+          <div class="clr"></div>
+        <br/>
+            <%
+						
+					  		int test=1;
+						String s1,s2,s3,s4,s5,s6,s7;
+						int i=1;
+						
+						  	String query="select * from category"; 
+						   	Statement st=connection.createStatement();
+						   	ResultSet rs=st.executeQuery(query);
+					   		while ( rs.next() )
+					   		{
+								s1=rs.getString(2);
+							
+					
+						if(test==1)
+						{%>
+            <p></p>
+            <table width="444" border="1" align="center"  cellpadding="0" cellspacing="0">
+              <tr>
+                <td height="28" align="center"  valign="middle" bgcolor="#FFFF00"><div align="center" class="style5 style37 style55 style68 style69 style72"><span class="style84">Si No. </span></div></td>
+                <td height="28" align="center"  valign="middle" bgcolor="#FFFF00"><div align="center" class="style5 style37 style55 style68 style69 style72"><span class="style85">Category Name </span></div></td>
+              </tr>
+              <%test=2;}
+								
+						
+					%>
+              <tr>
+                <td width="119" height="39" align="center"  valign="middle"><div align="center" class="style5 style37 style55 style68 style69 style86">
+                    <%out.println(i);%>
+                </div></td>
+                <td width="319" height="39" align="center"  valign="middle"><div align="center" class="style5 style20 style37 style55 style68 style69 style86">
+                    <%out.println(s1);%>
+                </div></td>
+              </tr>
+              <%
+							i+=1;
+							}%>
+          </table>
+            <%
+							
+					String category="";
+					category=request.getParameter("category");
+					if(!category.equals(""))
+					{
+						String query1="select * from category  where category='"+category+"' "; 
+						Statement st1=connection.createStatement();
+						ResultSet rs1=st1.executeQuery(query1);
+							
+								
+						if ( rs1.next() )
+						   {
+								%>
+            </p>
+            <p align="center" class="style39 style7 style85 style87"><strong>Category Already Exist..</strong></p>
+            </p>
+            <% 
+					
+						   }
+						   else
+						   {
+									
+								String strQuery2 = "insert into category(category) values('"+category+"')";
+								Statement st2=connection.createStatement();
+								st2.executeUpdate(strQuery2);
+								response.sendRedirect("A_AddCategory.jsp");
+								
+							}
+			
+					}
+								
+					
+				
+						connection.close();
+					}
+					catch(Exception e)
+					{
+						out.println(e.getMessage());
+					}
+					%>
+            <p></p>
+         
+          <div class="clr"></div>
+        </div>
+      </div>
+      <div class="sidebar">
+        <div class="searchform">
+          <form id="formsearch" name="formsearch" method="post" action="#">
+            <span>
+            <input name="editbox_search" class="editbox_search" id="editbox_search" maxlength="80" value="Search our ste:" type="text" />
+            </span>
+            <input name="button_search" src="images/search.gif" class="button_search" type="image" />
+          </form>
+        </div>
+        <div class="clr"></div>
+        <div class="gadget">
+          <h2 class="star"><span>ESeller </span>Menu</h2>
+          <div class="clr"></div>
+          <ul class="sb_menu">
+            <li><a href="#">Home</a></li>
+            <li><a href="index.html">Log Out</a></li>
+          </ul>
+        </div>
+        <div class="gadget">
+          <h2 class="star">&nbsp;</h2>
+        </div>
+      </div>
+      <div class="clr"></div>
+    </div>
+  </div>
+  <div class="fbg"></div>
+  <div class="footer">
+    <div class="footer_resize">
+      <div style="clear:both;"></div>
+    </div>
+  </div>
+</div>
+<div align=center></div>
+</body>
+</html>

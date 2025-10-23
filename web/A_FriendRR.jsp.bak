@@ -1,0 +1,190 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>All Friend Requests/Response..</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link href="css/style.css" rel="stylesheet" type="text/css" />
+<link rel="stylesheet" type="text/css" href="css/coin-slider.css" />
+<script type="text/javascript" src="js/cufon-yui.js"></script>
+<script type="text/javascript" src="js/cufon-aller.js"></script>
+<script type="text/javascript" src="js/jquery-1.4.2.min.js"></script>
+<script type="text/javascript" src="js/script.js"></script>
+<script type="text/javascript" src="js/coin-slider.min.js"></script>
+<style type="text/css">
+<!--
+.style8 {font-size: 20px}
+.style17 {font-size: 32px; color: #FF6600; }
+.style18 {color: #FF00FF}
+.style54 {color: #009900}
+.style33 {font-size: 13px;
+	color: #6666FF;
+	font-weight: bold;
+}
+.style34 {font-size: 18px; color: #00FF00; }
+.style36 {font-size: 18px; color: #FF3300; }
+.style38 {font-size: 18px; color: #666666; }
+.style48 {
+	font-size: 13px;
+	color: #FFFFFF;
+	font-weight: bold;
+}
+.style49 {	color: #FFFFFF;
+	font-size: 13.5px;
+}
+.style50 {color: #FFFFFF;
+	font-size: 13.5px;
+	font-weight: bold;
+}
+.style52 {font-size: 12px}
+.style55 {font-size: 16px}
+.style70 {font-size: 13.5px}
+.style86 {font-size: 25px}
+.style88 {
+	color: #0000FF;
+	font-weight: bold;
+}
+.style90 {color: #FF00FF; font-weight: bold; font-size: 13px; }
+.style91 {color: #009900; font-weight: bold; font-size: 13px; }
+.style94 {font-size: 18px; color: #FF6600; }
+.style95 {color: #FFFFFF}
+-->
+</style>
+</head>
+<body>
+<div class="main">
+  <div class="header">
+    <div class="header_resize">
+      <div class="menu_nav">
+        <ul>
+          <li><a href="index.html"><span>Home </span></a></li>
+          <li><a href="UserLogin.jsp"><span>User</span></a></li>
+          <li class="active"><a href="AdminLogin.jsp"><span>ESeller</span></a></li>
+        </ul>
+      </div>
+      <div class="logo style8">
+        <p class="style17"><span class="style94">Mining Users Trust From E-Commerce Reviews Based on Sentiment Similarity Analysis</span></p>
+        <p class="style17"></p>
+      </div>
+      <div class="clr"></div>
+      <div class="slider">
+        <div id="coin-slider"> <a href="#"><img src="images/slide1.jpg" width="940" height="271" alt="" /> </a> <a href="#"><img src="images/slide2.jpg" width="940" height="271" alt="" /> </a> <a href="#"><img src="images/slide3.jpg" width="940" height="271" alt="" /> </a> </div>
+      </div>
+      <div class="clr"></div>
+    </div>
+  </div>
+  <div class="content">
+    <div class="content_resize">
+      <div class="sidebar">
+        <div class="gadget">
+          <table width="851" border="0" cellspacing="2" cellpadding="2">
+            <tr>
+              <td width="843"><p class="style18"><span class="style30 style46 style31 style86"><strong>All Friend Requests/Response..</strong></span></p>
+                <p class="infopost">&nbsp;</p>                
+              </td>
+            </tr>
+<%@page import="com.oreilly.servlet.*,java.sql.*,java.lang.*,java.text.SimpleDateFormat,java.util.*,java.io.*,javax.servlet.*, javax.servlet.http.*" %>
+<%@ page import="java.sql.*"%>
+<%@ include file="connect.jsp" %>
+<%@ page import="java.util.Date" %>
+          </table>
+          <ul class="sb_menu"><li><table width="856" border="1" align="center">
+                <tr>
+                  <td width="37" height="47" align="center" valign="middle" bgcolor="#FF0000"><div align="center" class="style33 style49"><span class="style3 ">Id </span></div></td>
+                  <td width="114" align="center" valign="middle" bgcolor="#FF0000"><div align="center" class="style36 style70 style95"><strong><span class="style3 ">Request From </span></strong></div></td>
+                  <td width="145" align="center" valign="middle" bgcolor="#FF0000"><div align="center" class="style36 style95 style70"><strong><span class="style3 ">Requested User </span></strong></div></td>
+                  <td width="108" align="center" valign="middle" bgcolor="#FF0000"><div align="center" class="style55 style49"><strong><span class="style3 ">Request To </span></strong></div></td>
+                  <td width="173" align="center" valign="middle" bgcolor="#FF0000"><div align="center" class="style34 style50"><span class="style3 "> Request To Name </span></div></td>
+                  <td width="99" align="center" valign="middle" bgcolor="#FF0000"><div align="center" class="style38 style70 style95"><strong><span class="style3 ">Status</span></strong></div></td>
+                  <td width="134" align="center" valign="middle" bgcolor="#FF0000"><div align="center" class="style38 style95 style70"><strong><span class="style3 ">Date</span></strong></div></td>
+                </tr>
+                <%
+ 
+      	
+	String s1="",s2="",s3="",s4="",s5="",s6="",s7="",s8,s9,s10,s11,s12,s13;
+	int i=0,j=0,k=0;
+
+     try 
+	{
+           
+					   String query="select * from  frequest"; 
+					   Statement st=connection.createStatement();
+					   ResultSet rs=st.executeQuery(query);
+					   while( rs.next() )
+					   {
+						
+								i=rs.getInt(1);
+								s2=rs.getString(2);
+								s3=rs.getString(3);
+								s4=rs.getString(4);
+								s5=rs.getString(5);
+				
+								String query1="select * from user where username='"+s2+"'"; 
+								Statement st1=connection.createStatement();
+								ResultSet rs1=st1.executeQuery(query1);
+							 	while( rs1.next() )
+							 	{
+									j=rs1.getInt(1);  
+							
+									String query2="select * from user where username='"+s3+"'"; 
+									Statement st2=connection.createStatement();
+									ResultSet rs2=st2.executeQuery(query2);
+									while( rs2.next() )
+								 	{
+										k=rs2.getInt(1);  
+								
+		
+%>
+                <tr>
+                  <td height="111"><div align="center" class="style90"><%=i%></div></td>
+                  <td><div align="center" class="style48 style52 style54 style18 style18">
+                      <input  name="image" type="image" src="user_Pic.jsp?id=<%=j%>" width="100" height="100" alt="Submit" />
+                  </div></td>
+                  <td><div align="center" class="style90"><%=s2 %></div></td>
+                  <td><div align="center" class="style52 style54 style18">
+                      <input  name="image2" type="image" src="user_Pic.jsp?id=<%=k%>" width="100" height="100" alt="Submit" />
+                  </div></td>
+                  <td><div align="center" class="style90"><%=s3 %></div></td>
+                  <td><div align="center" class="style91"><%= s5%></div></td>
+                  <td><div align="center" class="style90"><%= s4%></div></td>
+                </tr>
+                <%
+		  }
+	  }
+		
+	   }
+	 
+
+           connection.close();
+          }
+         
+          catch(Exception e)
+          {
+            out.println(e.getMessage());
+          }
+%>
+              </table>
+            </li>
+            <li></li>
+          </ul>
+          <table width="456" border="0" cellspacing="2" cellpadding="2">
+            <tr>
+              <td width="448" height="80"><div align="right">
+                <p><a href="AdminMain.jsp" class="style88">Back</a></p>
+                </div></td>
+            </tr>
+          </table>
+        </div>
+      </div>
+      <div class="clr"></div>
+    </div>
+  </div>
+  <div class="fbg"></div>
+  <div class="footer">
+    <div class="footer_resize">
+      <div style="clear:both;"></div>
+    </div>
+  </div>
+</div>
+<div align=center></div>
+</body>
+</html>

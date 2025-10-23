@@ -1,0 +1,270 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>Adding Products Status..</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link href="css/style.css" rel="stylesheet" type="text/css" />
+<link rel="stylesheet" type="text/css" href="css/coin-slider.css" />
+<script type="text/javascript" src="js/cufon-yui.js"></script>
+<script type="text/javascript" src="js/cufon-aller.js"></script>
+<script type="text/javascript" src="js/jquery-1.4.2.min.js"></script>
+<script type="text/javascript" src="js/script.js"></script>
+<script type="text/javascript" src="js/coin-slider.min.js"></script>
+<style type="text/css">
+<!--
+.style8 {font-size: 20px}
+.style17 {font-size: 32px; color: #FF6600; }
+.style18 {color: #FF00FF}
+.style35 {
+	font-size: 25px;
+	color: #FF00FF;
+}
+.style84 {
+	font-size: 12px;
+	color: #0000FF;
+}
+.style85 {color: #0000FF; font-weight: bold; }
+.style41 {font-size: 16px}
+.style46 {font-size: 12px}
+.style49 {	font-size: 13px;
+	color: #FF0000;
+	font-weight: bold;
+}
+.style51 {font-size: 13px}
+.style93 {color: #FF0000}
+.style94 {font-size: 16px; color: #FF0000; }
+.style95 {color: #6666FF}
+.style96 {color: #0000FF}
+.style97 {font-size: 16px; color: #0000FF; }
+.style98 {font-size: 18px; color: #FF6600; }
+-->
+</style>
+</head>
+<body>
+<div class="main">
+  <div class="header">
+    <div class="header_resize">
+      <div class="menu_nav">
+        <ul>
+          <li><a href="index.html"><span>Home </span></a></li>
+          <li><a href="UserLogin.jsp"><span>User</span></a></li>
+          <li class="active"><a href="AdminLogin.jsp"><span>ESeller</span></a></li>
+        </ul>
+      </div>
+      <div class="logo style8">
+        <p class="style17"><span class="style98">Fraud Detection in Online Product Review Systems via Heterogeneous Graph Transformer</span></p>
+        <p class="style17"></p>
+        <p class="style17"> </p>
+      </div>
+      <div class="clr"></div>
+      <div class="slider">
+        <div id="coin-slider"> <a href="#"><img src="images/slide1.jpg" width="940" height="271" alt="" /> </a> <a href="#"><img src="images/slide2.jpg" width="940" height="271" alt="" /> </a> <a href="#"><img src="images/slide3.jpg" width="940" height="271" alt="" /> </a> </div>
+      </div>
+      <div class="clr"></div>
+    </div>
+  </div>
+  <div class="content">
+    <div class="content_resize">
+      <div class="mainbar">
+        <div class="article">
+          <h2 class="style18"><span class="style36 style35">Adding Posts Status..</span></h2>
+          <p class="infopost">&nbsp;</p>
+          <div class="clr"></div>
+         
+            <div class="templatemo_h_line"> </div>
+            <h1>
+            <%@ include file="connect.jsp" %>
+            <%@ page import="java.io.*"%>
+            <%@ page import="java.util.*" %>
+            <%@ page import="java.util.Date" %>
+            <%@ page import="com.oreilly.servlet.*"%>
+            <%@ page import ="java.text.SimpleDateFormat" %>
+            <%@ page import ="javax.crypto.Cipher" %>
+            <%@ page import ="org.bouncycastle.util.encoders.Base64" %>
+            <%@ page import ="javax.crypto.spec.SecretKeySpec" %>
+            <%@ page import ="java.security.KeyPairGenerator,java.security.KeyPair,java.security.Key" %>
+            <%
+			       
+					
+				    ArrayList list = new ArrayList();
+					
+					ServletContext context = getServletContext();
+					
+					String dirName ="C:/Gallery/";
+					
+					String category=null,title="",price="",des="",image=null,bin = "",indexs="", paramname=null;
+					
+					FileInputStream fs=null;
+					
+					File file1 = null;	
+					try {
+						MultipartRequest multi = new MultipartRequest(request, dirName,	10 * 1024 * 1024);	
+						Enumeration params = multi.getParameterNames();
+						while (params.hasMoreElements()) 
+						{
+							paramname = (String) params.nextElement();
+							
+							if(paramname.equalsIgnoreCase("category"))
+							{
+								category=multi.getParameter(paramname);
+							}
+							if(paramname.equalsIgnoreCase("title"))
+							{
+								title=multi.getParameter(paramname);
+							}
+							if(paramname.equalsIgnoreCase("price"))
+							{
+								price=multi.getParameter(paramname);
+							}
+							if(paramname.equalsIgnoreCase("indexs"))
+							{
+								indexs=multi.getParameter(paramname);
+							}
+							if(paramname.equalsIgnoreCase("des"))
+							{
+								des=multi.getParameter(paramname);
+							}
+							
+							}
+							
+						int f = 0;
+						Enumeration files = multi.getFileNames();	
+						while (files.hasMoreElements()) 
+						{
+							paramname = (String) files.nextElement();
+							
+							if(paramname != null)
+							{
+								f = 1;
+								image = multi.getFilesystemName(paramname);
+								String fPath = "C:\\Gallery\\"+image;
+								file1 = new File(fPath);
+								fs = new FileInputStream(file1);
+								list.add(fs);
+							
+								
+							}		
+						}
+						
+					if(category.equals("--Select--")|| title.equals("")|| indexs.equals("")|| price.equals("")|| des.equals(""))
+					{
+					%>
+
+            <p class="style37 style49">Please Enter All Values..</p>
+            <p class="style41"><a href="A_AddProducts.jsp" class="style7 style46 style96"><strong>Back</strong></a></p>
+  
+              <%
+					}	
+		
+		            else
+					{
+						FileInputStream fs1 = null;
+			 			String query1="select * from products  where title='"+title+"' and category='"+category+"'"; 
+						Statement st1=connection.createStatement();
+						ResultSet rs1=st1.executeQuery(query1);
+						
+							
+					if ( rs1.next() )
+					   {
+					   		%>
+
+            <p class="style37 style93 style51">Product Name Already Exist..</p>
+            <p><a href="A_AddProducts.jsp" class="style7 style46 style96"><strong>Back</strong></a></p>
+
+            <%
+				
+					   }
+					   else
+					   {
+					   
+					   String ecom=(String)application.getAttribute("ecom");
+					   
+					   SimpleDateFormat sdfDate = new SimpleDateFormat("dd/MM/yyyy");
+		   	           SimpleDateFormat sdfTime = new SimpleDateFormat("HH:mm:ss");
+
+			           Date now = new Date();
+
+			           String strDate = sdfDate.format(now);
+			           String strTime = sdfTime.format(now);
+			           String date = strDate + "   " + strTime;
+			
+					    int rank =0,unlike=0;
+						
+
+						PreparedStatement ps=connection.prepareStatement("insert into products(title,category,price,indexs,des,rank,image,date,unlike,ecompany) values(?,?,?,?,?,?,?,?,?,?)");
+						
+						ps.setString(1,title);
+						ps.setString(2,category);
+						ps.setString(3,price);	
+						ps.setString(4,indexs);	
+						ps.setString(5,des);							
+						ps.setInt(6,rank);
+				        ps.setBinaryStream(7, (InputStream)fs, (int)(file1.length()));	
+						ps.setString(8,date);
+						ps.setInt(9,unlike);
+						ps.setString(10,ecom);
+						ps.executeUpdate();
+						
+						PreparedStatement ps1=connection.prepareStatement("insert into backup(title,category,price,indexs,des,date,ecom) values(?,?,?,?,?,?,?)");
+						
+						ps1.setString(1,title);
+						ps1.setString(2,category);
+						ps1.setString(3,price);	
+						ps1.setString(4,indexs);	
+						ps1.setString(5,des);							
+						ps1.setString(6,date);
+						ps1.setString(7,ecom);
+						ps1.executeUpdate();
+					   
+						%>
+    
+            <p class="style51 style37 style95">Product Uploaded Successfully..</p>
+            <p><a href="A_AddProducts.jsp" class="style7 style46 style96"><strong>Back</strong></a></p>
+       
+            <%
+			
+						}}
+					}
+					catch (Exception e) 
+					{
+						out.println(e.getMessage());
+					}
+			%>
+
+       
+        </div>
+      </div>
+      <div class="sidebar">
+        <div class="searchform">
+          <form id="formsearch" name="formsearch" method="post" action="#">
+            <span>
+            <input name="editbox_search" class="editbox_search" id="editbox_search" maxlength="80" value="Search our ste:" type="text" />
+            </span>
+            <input name="button_search" src="images/search.gif" class="button_search" type="image" />
+          </form>
+        </div>
+        <div class="clr"></div>
+        <div class="gadget">
+          <h2 class="star"><span>Sidebar</span> Menu</h2>
+          <div class="clr"></div>
+          <ul class="sb_menu">
+            <li>
+              <p><a href="A_AddProducts.jsp">Home</a></p>
+              <p><a href="index.html">Log Out</a></p>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div class="clr"></div>
+    </div>
+  </div>
+  <div class="fbg"></div>
+  <div class="footer">
+    <div class="footer_resize">
+      <div style="clear:both;"></div>
+    </div>
+  </div>
+</div>
+<div align=center></div>
+</body>
+</html>

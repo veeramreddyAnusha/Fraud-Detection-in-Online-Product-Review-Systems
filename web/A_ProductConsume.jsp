@@ -1,0 +1,196 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>Product Consumes By Users..</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link href="css/style.css" rel="stylesheet" type="text/css" />
+<link href="circle.css" rel="stylesheet" type="text/css" />
+<link rel="stylesheet" type="text/css" href="css/coin-slider.css" />
+<script type="text/javascript" src="js/cufon-yui.js"></script>
+<script type="text/javascript" src="js/cufon-aller.js"></script>
+<script type="text/javascript" src="js/jquery-1.4.2.min.js"></script>
+<script type="text/javascript" src="js/script.js"></script>
+<script type="text/javascript" src="js/coin-slider.min.js"></script>
+<style type="text/css">
+<!--
+.style8 {font-size: 20px}
+.style17 {font-size: 32px; color: #FF6600; }
+.style35 {
+	font-size: 25px;
+	color: #FF00FF;
+}
+.style98 {font-size: 28px}
+.style105 {
+	color: #000000;
+	font-weight: bold;
+}
+.style92 {color: #FF0000; font-weight: bold; font-size: 14px; }
+.style106 {color: #006600}
+.style94 {font-size: 18px; color: #FF6600; }
+-->
+</style>
+</head>
+<body>
+<div class="main">
+  <div class="header">
+    <div class="header_resize">
+      <div class="menu_nav">
+        <ul>
+          <li><a href="index.html"><span>Home </span></a></li>
+          <li><a href="UserLogin.jsp"><span>User</span></a></li>
+          <li class="active"><a href="AdminLogin.jsp"><span>ESeller</span></a></li>
+        </ul>
+      </div>
+      <div class="logo style8">
+        <p class="style17"><span class="style94">Fraud Detection in Online Product Review Systems via Heterogeneous Graph Transformer</span></p>
+        <p class="style17"></p>
+      </div>
+      <div class="clr"></div>
+      <div class="slider">
+        <div id="coin-slider"> <a href="#"><img src="images/slide1.jpg" width="940" height="271" alt="" /> </a> <a href="#"><img src="images/slide2.jpg" width="940" height="271" alt="" /> </a> <a href="#"><img src="images/slide3.jpg" width="940" height="271" alt="" /> </a> </div>
+      </div>
+      <div class="clr"></div>
+    </div>
+  </div>
+  <div class="content">
+    <div class="content_resize">
+      <div class="sidebar">
+        <div class="gadget">
+          <table width="772" border="0" cellspacing="2" cellpadding="2">
+            <tr>
+              <td width="764"><p class="style36 style35 style98">Products Consumed  by Users based on Likes..</p>
+                <p class="infopost">&nbsp;</p>              </td>
+            </tr>
+          </table>
+		 	  <%@ include file="connect.jsp" %>
+              <%@ page import="java.io.*"%>
+              <%@ page import="java.util.*" %>
+              <%@ page import="java.util.Date" %>
+              <%@ page import="com.oreilly.servlet.*"%>
+          
+		  <%
+		
+      		 ArrayList a1=new ArrayList();
+      		
+      		 
+           
+           String query="select distinct(title) FROM likes"; 
+           Statement st=connection.createStatement();
+           ResultSet rs=st.executeQuery(query);
+		   while ( rs.next() )
+		   {
+				a1.add(rs.getString("title"));
+			
+		   }
+	   
+		
+		%>
+		   <form action="A_ProductConsume.jsp" method="post">
+		  <table width="800" border="0" align="center">
+            <tr>
+              <td width="334" height="33"><div align="justify" class="style92">
+                  <div align="right"><span class="style3">Select  Product </span> </div>
+              </div></td>
+              <td width="456"><label>
+                  <div align="left">
+                    <select id="s1" name="title" style="width:150px">
+                      <option>--Select--</option>
+                      <% 
+							for(int i=0;i<a1.size();i++)
+							{
+							 
+								 %>
+                      <option><%= a1.get(i)%></option>
+                      <%
+							}
+							%>
+                    </select>
+                  </div>
+                </label></td>
+            </tr>
+            <tr>
+              <td height="99" colspan="2"><div align="center">
+                  <input type="submit" name="Submit" value="View Consumed Details" />
+              </div></td>
+            </tr>
+          </table>
+		  <p>&nbsp;</p>	
+			  <table width="712" border="0" cellspacing="2" cellpadding="2">
+            <tr>
+              <td width="704"><div align="right"><a href="AdminMain.jsp" class="style105">Back</a></div></td>
+            </tr>
+          </table>
+		  </form>
+           <table width="750" border="0" cellspacing="2" cellpadding="2">
+             <tr>
+               <td width="742" height="37"><div align="center"><span class="star style35">Liked Users on Post '<span class="style106"><%=request.getParameter("title")%></span>' Click on Image </span></div></td>
+             </tr>
+           </table>
+           <table  width="753" border="0" align="center" cellpadding="2" cellspacing="2">
+            <tr>
+              <td width="745"><div class="templatemo_h_line">
+                <div align="center" id="circle1">
+                  <%
+					  
+						
+						try 
+						{
+						
+							String title=request.getParameter("title");
+							int loop=2;
+							String query2="select distinct(user) from likes where title='"+title+"'"; 
+						   	Statement st2=connection.createStatement();
+						   	ResultSet rs2=st2.executeQuery(query2);
+					   		while ( rs2.next() )
+					   		{
+										
+								String username=rs2.getString(1);
+								String query3="select id from user where username='"+username+"'"; 
+								Statement st3=connection.createStatement();
+								ResultSet rs3=st3.executeQuery(query3);
+								if ( rs3.next() )
+								{
+										int id1=rs3.getInt(1);
+										if(loop%2==0)
+									   {
+											%><br/><%
+									   
+									   }
+             
+		      %>
+			   
+           		<a href="ConsumerProfile.jsp?username=<%=username%>&title=<%=title%>"><img src="user_Pic.jsp?id=<%=id1%>" width="82" height="75" alt="" class="gal" id="circle" /></a>
+                  <%
+               		
+      							} 	loop++;
+					}
+			
+					
+					
+						connection.close();
+					}
+					catch(Exception e)
+					{
+						out.println(e.getMessage());
+					}
+					%>
+                </div>
+              </div></td>
+            </tr>
+          </table>
+          <p class="star">&nbsp;</p>
+        </div>
+      </div>
+      <div class="clr"></div>
+    </div>
+  </div>
+  <div class="fbg"></div>
+  <div class="footer">
+    <div class="footer_resize">
+      <div style="clear:both;"></div>
+    </div>
+  </div>
+</div>
+<div align=center></div>
+</body>
+</html>

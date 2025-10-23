@@ -1,0 +1,117 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>Admin Main Page..</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link href="css/style.css" rel="stylesheet" type="text/css" />
+<link rel="stylesheet" type="text/css" href="css/coin-slider.css" />
+<script type="text/javascript" src="js/cufon-yui.js"></script>
+<script type="text/javascript" src="js/cufon-aller.js"></script>
+<script type="text/javascript" src="js/jquery-1.4.2.min.js"></script>
+<script type="text/javascript" src="js/script.js"></script>
+<script type="text/javascript" src="js/coin-slider.min.js"></script>
+<style type="text/css">
+<!--
+.style8 {font-size: 20px}
+.style17 {font-size: 32px; color: #FF6600; }
+.style12 {color: #6633FF;
+	font-size: 24px;
+}
+.style19 {color: #009900}
+.style22 {color: #00CC00}
+.style23 {font-size: 26px;
+	color: #FF00FF;
+}
+.style24 {font-size: 28px}
+.style3 {color: #FF00FF}
+.style94 {font-size: 18px; color: #FF6600; }
+.style95 {	color: #FF0000;
+	font-weight: bold;
+}
+-->
+</style>
+</head>
+<body>
+<div class="main">
+  <div class="header">
+    <div class="header_resize">
+      <div class="menu_nav">
+        <ul>
+          <li><a href="index.html"><span>Home </span></a></li>
+          <li><a href="UserLogin.jsp"><span>User</span></a></li>
+          <li class="active"><a href="AdminLogin.jsp"><span>ESeller</span></a></li>
+        </ul>
+      </div>
+      <div class="logo style8">
+        <p class="style17"><span class="style94">Fraud Detection in Online Product Review Systems via Heterogeneous Graph Transformer</span></p>
+        <p class="style17"></p>
+        <p class="style17"> </p>
+      </div>
+      <div class="clr"></div>
+      <div class="slider">
+        <div id="coin-slider"> <a href="#"><img src="images/slide1.jpg" width="940" height="271" alt="" /> </a> <a href="#"><img src="images/slide2.jpg" width="940" height="271" alt="" /> </a> <a href="#"><img src="images/slide3.jpg" width="940" height="271" alt="" /> </a> </div>
+      </div>
+      <div class="clr"></div>
+    </div>
+  </div>
+  <div class="content">
+    <div class="content_resize">
+      <div class="mainbar">
+        <div class="article">
+          <h2><span class="style23">Welcome To ESeller Main::<%=(String)application.getAttribute("ecom")%></span></h2>
+          <p class="infopost">&nbsp;</p>
+          <div class="clr"></div>
+          <div class="img"><img src="images/Admin.png" width="621" height="407" /></div>
+          <div class="post_content">
+            <p align="justify"><span class="style95">Consumers' reviews in E-commerce systems are usually treated as the important resources that reect user's experience, feelings, and willingness to purchase items. All this information may involve consumers' views on things that can express interest, sentiments, and opinions. Many kinds of research have shown that people are more likely to trust each other with the same attitude toward similar things. In this paper, we consider seeking and accepting sentiments and suggestions in E-commerce systems somewhat implies a form of trust between consumers during shopping. Following this view of point, an E-commerce system reviews mining oriented sentiment similarity analysis approach is put forward to exploring users' similarity and their trust. We divide the trust into two categories, namely direct trust, and propagation of trust, which represents a trust relationship between two individuals. </span></p>
+          </div>
+          <div class="clr"></div>
+        </div>
+      </div>
+      <div class="sidebar">
+        <div class="searchform">
+          <form id="formsearch" name="formsearch" method="post" action="#">
+            <span>
+            <input name="editbox_search" class="editbox_search" id="editbox_search" maxlength="80" value="Search our ste:" type="text" />
+            </span>
+            <input name="button_search" src="images/search.gif" class="button_search" type="image" />
+          </form>
+        </div>
+        <div class="clr"></div>
+        <div class="gadget">
+          <h2 class="star"><span>Sidebar</span> Menu</h2>
+          <div class="clr"></div>
+          <ul class="sb_menu">
+            <li><a href="AdminMain.jsp">Home</a><a href="index.html"></a></li>
+			<li><a href="A_AuthorizeUsers.jsp">View and Authorize Users</a></li>
+			 <li><a href="A_FriendRR.jsp">View Friend Request/Response </a></li>
+			<li><a href="A_AddCategory.jsp">Add and View Categories </a></li>
+            <li><a href="A_AddProducts.jsp">Add Products</a></li>
+			<li><a href="A_ViewAllProducts.jsp">View All Products with Ratings </a></li>
+			<li><a href="A_ViewAllReviews.jsp">View All Products's Reviews </a></li>
+			
+			<li><a href="A_ViewSentiment.jsp">View All Sentiment Similarity By Reviews </a></li>
+			
+			<li><a href="A_ViewAllPurchased_Products.jsp">View All Purchased Products </a></li>
+            <li><a href="A_DeletedFriends.jsp">View Deleted Friends</a> </li>
+            <li><a href="A_QueryKeyword.jsp">View User Query Keyword </a></li>
+            <li><a href="A_ProductConsume.jsp">View All Product Consumes By Users </a></li>
+            <li><a href="A_RecommendProducts.jsp">View All Recommended Products   </a></li>
+			<li><a href="A_RankResults.jsp">View Product Rank Results </a></li>
+            <li><a href="index.html">Log Out</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="clr"></div>
+    </div>
+  </div>
+  <div class="fbg"></div>
+  <div class="footer">
+    <div class="footer_resize">
+      <div style="clear:both;"></div>
+    </div>
+  </div>
+</div>
+<div align=center></div>
+</body>
+</html>

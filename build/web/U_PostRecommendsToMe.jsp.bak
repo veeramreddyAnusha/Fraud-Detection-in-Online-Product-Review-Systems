@@ -1,0 +1,171 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>Post Recommendations To User..</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link href="css/style.css" rel="stylesheet" type="text/css" />
+<link rel="stylesheet" type="text/css" href="css/coin-slider.css" />
+<script type="text/javascript" src="js/cufon-yui.js"></script>
+<script type="text/javascript" src="js/cufon-aller.js"></script>
+<script type="text/javascript" src="js/jquery-1.4.2.min.js"></script>
+<script type="text/javascript" src="js/script.js"></script>
+<script type="text/javascript" src="js/coin-slider.min.js"></script>
+<style type="text/css">
+<!--
+.style8 {font-size: 20px}
+.style17 {font-size: 32px; color: #FF6600; }
+.style18 {color: #FF00FF}
+.style12 {color: #0000FF}
+.style35 {
+	font-size: 25px;
+	color: #FF00FF;
+}
+.style5 {color: #66CCFF;
+	font-size: 21px;
+	font-weight: bold;
+}
+.style54 {color: #009900}
+.style56 {color: #FF0000}
+.style57 {font-size: 15px}
+.style84 {
+	font-size: 12px;
+	color: #0000FF;
+}
+.style85 {color: #0000FF; font-weight: bold; }
+.style86 {font-size: 13px}
+.style89 {color: #00CC00}
+.style90 {color: #FF00FF; font-weight: bold; }
+.style91 {color: #000000}
+.style94 {font-size: 18px; color: #FF6600; }
+-->
+</style>
+</head>
+<body>
+<div class="main">
+  <div class="header">
+    <div class="header_resize">
+      <div class="menu_nav">
+        <ul>
+          <li><a href="index.html"><span>Home </span></a></li>
+          <li class="active"><a href="UserLogin.jsp"><span>User</span></a></li>
+          <li><a href="AdminLogin.jsp"><span>ESeller</span></a></li>
+        </ul>
+      </div>
+      <div class="logo style8">
+        <p class="style17"><span class="style94">Mining Users Trust From E-Commerce Reviews Based on Sentiment Similarity Analysis</span></p>
+        <p class="style17"></p>
+        <p class="style17"> </p>
+      </div>
+      <div class="clr"></div>
+      <div class="slider">
+        <div id="coin-slider"> <a href="#"><img src="images/slide1.jpg" width="940" height="271" alt="" /> </a> <a href="#"><img src="images/slide2.jpg" width="940" height="271" alt="" /> </a> <a href="#"><img src="images/slide3.jpg" width="940" height="271" alt="" /> </a> </div>
+      </div>
+      <div class="clr"></div>
+    </div>
+  </div>
+  <div class="content">
+    <div class="content_resize">
+      <div class="mainbar">
+        <div class="article">
+          <h2 class="style18"><span class="style12"><span class="style35">Post Recommends to <span class="style89"><%=(String)application.getAttribute("uname")%></span> ..</span></span></h2>
+          <p class="infopost">&nbsp;</p>
+          <div class="clr"></div>
+            <p>&nbsp;</p>
+            <table width="654" align="center"  cellpadding="0" cellspacing="0"  ">
+              <tr>
+                <td  width="37" height="44"  valign="middle" bgcolor="#FFFF00" style="color: #2c83b0;"><div align="center" class="style5 style56 style57">Si No. </div></td>
+                <td  width="116" height="44" valign="middle" bgcolor="#FFFF00" style="color: #2c83b0;"><div align="center" class="style5 style56 style57">Post Image</div></td>
+                <td  width="109" height="44" valign="middle" bgcolor="#FFFF00" style="color: #2c83b0;"><div align="center" class="style5 style56 style57">Post Name</div></td>
+                <td  width="116" height="44" valign="middle" bgcolor="#FFFF00" style="color: #2c83b0;"><div align="center" class="style5 style56 style57">Category</div></td>
+                <td  width="100" height="44" valign="middle" bgcolor="#FFFF00" style="color: #2c83b0;"><div align="center" class="style5 style56 style57">Recommend By </div></td>
+              </tr>
+              <%@ include file="connect.jsp" %>
+              <%
+					  
+						String s1,s2,s3,s4,s5,s6,s7;
+						int i=1;
+						try 
+						{
+							String user=(String)application.getAttribute("uname");
+						   	String query="select distinct(title),category from productrecommend where recommendto='"+user+"'"; 
+						   	Statement st=connection.createStatement();
+						   	ResultSet rs=st.executeQuery(query);
+					   		while ( rs.next() )
+					   		{
+								s1=rs.getString(1);
+								s2=rs.getString(2);
+								/*s3=rs.getString(6);
+								s4=rs.getString(9);*/
+								
+								
+					%>
+              <tr>
+                <td height="0" align="center"  valign="middle"><div align="center" class="style90">
+                    <%out.println(i);%>
+                </div></td>
+                <td width="116" rowspan="1" align="center" valign="middle" ><div class="style5 style37 style54 style55 style86 style18" style="margin:10px 13px 10px 13px;" > <a class="#" id="img1" href="#" >
+                    <input  name="image" type="image" src="images1.jsp?title=<%=s1%>&category=<%=s2%>" style="width:90px; height:90px;" />
+                </a> </div></td>
+                <td height="0" align="center"  valign="middle"><div align="center" class="style90"> 
+                    <a href="U_RecommendedPost.jsp?title=<%=s1%>&amp;category=<%=s2%>">
+                    <%out.println(s1);%>
+                    </a></div></td>
+                <td height="0" align="center"  valign="middle"><div align="center" class="style90"> 
+                    <%out.println(s2);%>
+                </div></td>
+                <td height="0" align="center"  valign="middle"><div align="center" class="style5 style20 style37 style54 style55 style86 style18"><a href="U_RecommendDetails.jsp?title=<%=s1%>&amp;category=<%=s2%>">View Details </a></div></td>
+              </tr>
+              <%
+						i+=1;}
+						
+					
+				
+						connection.close();
+					}
+					catch(Exception e)
+					{
+						out.println(e.getMessage());
+					}
+					%>
+          </table>
+            <p align="right">&nbsp;</p>
+            <p align="center" class="style84"><a href="UserMain.jsp" class="style85 style91">Back</a></p>
+            <div class="post_content"></div>
+          <div class="clr"></div>
+        </div>
+      </div>
+      <div class="sidebar">
+        <div class="searchform">
+          <form id="formsearch" name="formsearch" method="post" action="#">
+            <span>
+            <input name="editbox_search" class="editbox_search" id="editbox_search" maxlength="80" value="Search our ste:" type="text" />
+            </span>
+            <input name="button_search" src="images/search.gif" class="button_search" type="image" />
+          </form>
+        </div>
+        <div class="clr"></div>
+        <div class="gadget">
+          <h2 class="star"><span>Sidebar</span> Menu</h2>
+          <div class="clr"></div>
+          <ul class="sb_menu">
+            <li>
+              <p><a href="U_PostRecommendsToMe.jsp">Home</a></p>
+              <p><a href="index.html">Log Out</a></p>
+            </li>
+          </ul>
+        </div>
+        <div class="gadget"></div>
+      </div>
+      <div class="clr"></div>
+    </div>
+  </div>
+  <div class="fbg"></div>
+  <div class="footer">
+    <div class="footer_resize">
+      <div style="clear:both;"></div>
+    </div>
+  </div>
+</div>
+<div align=center></div>
+</body>
+</html>

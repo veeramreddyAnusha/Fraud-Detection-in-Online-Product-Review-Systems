@@ -1,0 +1,33 @@
+/* CSS Document */
+#circle
+{
+	width:70px;
+	height:80px;
+	border-radius:80%;
+}
+#circle1
+{
+	width:300px;
+	background-color:yellow;
+	border-radius:90%;
+	margin-left:220px;
+	
+}
+#circle2
+{
+	width:300px;
+	background-color:yellow;
+	border-radius:90%;
+	margin-left:230px;
+	
+}
+#circle3
+{
+	width:300px;
+	background-color:yellow;
+	border-radius:90%;
+	margin-left:90px;
+	
+}
+
+

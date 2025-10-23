@@ -1,0 +1,190 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<%@page import="com.oreilly.servlet.*,java.sql.*,java.lang.*,java.text.SimpleDateFormat,java.util.*,java.io.*,javax.servlet.*, javax.servlet.http.*" %>
+<%@ page import="java.sql.*"%>
+<%@ include file="connect.jsp" %>
+<%@ page import="java.util.Date" %>
+<html xmlns="http://www.w3.org/1999/xhtml"><head>
+<title>Friends Requests..</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link href="css/style.css" rel="stylesheet" type="text/css" />
+<link rel="stylesheet" type="text/css" href="css/coin-slider.css" />
+<script type="text/javascript" src="js/cufon-yui.js"></script>
+<script type="text/javascript" src="js/cufon-aller.js"></script>
+<script type="text/javascript" src="js/jquery-1.4.2.min.js"></script>
+<script type="text/javascript" src="js/script.js"></script>
+<script type="text/javascript" src="js/coin-slider.min.js"></script>
+<style type="text/css">
+<!--
+.style8 {font-size: 20px}
+.style17 {font-size: 32px; color: #FF6600; }
+.style3 {color: #FF00FF}
+.style1 {font-size: 25px}
+.style33 {color: #0000FF}
+.style34 {color: #42ac1f}
+.style9 {color: #FF0000; font-weight: bold; }
+.style11 {color: #0000FF;
+	font-weight: bold;
+}
+.style43 {color: #FF00FF; font-size: 25px; }
+.style7 {color: #FFFFFF}
+.style48 {
+	color: #FFFFFF;
+	font-weight: bold;
+	font-size: 13px;
+}
+.style50 {color: #FF00FF; font-weight: bold; font-size: 13px; }
+.style51 {color: #009900; font-weight: bold; }
+.style94 {font-size: 18px; color: #FF6600; }
+-->
+</style>
+</head>
+<body>
+<div class="main">
+  <div class="header">
+    <div class="header_resize">
+      <div class="menu_nav">
+        <ul>
+          <li><a href="index.html"><span>Home </span></a></li>
+          <li class="active"><a href="UserLogin.jsp"><span>User</span></a></li>
+          <li><a href="AdminLogin.jsp"><span>ESeller</span></a></li>
+        </ul>
+      </div>
+      <div class="logo style8">
+        <p class="style17"><span class="style94">Mining Users Trust From E-Commerce Reviews Based on Sentiment Similarity Analysis</span></p>
+        <p class="style17"></p>
+        <p class="style17"> </p>
+      </div>
+      <div class="clr"></div>
+      <div class="slider">
+        <div id="coin-slider"> <a href="#"><img src="images/slide1.jpg" width="940" height="271" alt="" /> </a> <a href="#"><img src="images/slide2.jpg" width="940" height="271" alt="" /> </a> <a href="#"><img src="images/slide3.jpg" width="940" height="271" alt="" /> </a> </div>
+      </div>
+      <div class="clr"></div>
+    </div>
+  </div>
+  <div class="content">
+    <div class="content_resize">
+      <div class="mainbar">
+        <div class="article">
+          <h2><span class="style33"><span class="style1"><span class="style3">Friend Requests To</span> <span class="style34"><%=(String)application.getAttribute("uname")%></span></span><span class="style43">..</span></span></h2>
+          <p class="infopost">&nbsp;</p>
+          <div class="clr">
+            <p>&nbsp;</p>
+          </div>
+      
+            <table width="650" border="2" align="center"  cellpadding="0" cellspacing="0"  style="border-collapse: collapse; margin:10px 0px 0px 10px; font-family:Verdana, Arial, Helvetica, sans-serif; font-size:14px;">
+              <tr>
+                <td  width="136" height="30" align="center" valign="bottom" bgcolor="#FFFF00" style="color: #2c83b0;"><div align="center" class="style9">Username</div></td>
+                <td  width="155" height="30" align="center" valign="bottom" bgcolor="#FFFF00" style="color: #2c83b0;"><div align="center" class="style9">Mobile</div></td>
+                <td  width="136" height="30" align="center" valign="bottom" bgcolor="#FFFF00" style="color: #2c83b0;"><div align="center" class="style9">Address</div></td>
+                <td  width="94" height="30" align="center" valign="bottom" bgcolor="#FFFF00" style="color: #2c83b0;"><div align="center" class="style9">Gender</div></td>
+                <td  width="96" height="30" align="center" valign="bottom" bgcolor="#FFFF00" style="color: #2c83b0;"><div align="center" class="style9">Status</div></td>
+              </tr>
+              <%
+					  	String uname = (String)application.getAttribute("uname");
+						String s1,s2,s3,s4,s5,s6,s7,s8,s9,s10,s11,s12,s13;
+						int i=0;
+						try 
+						{
+						 
+								String status="";
+								String query1="select * from frequest where requestto='"+uname+"'"; 
+								Statement st1=connection.createStatement();
+								ResultSet rs1=st1.executeQuery(query1);
+								while(rs1.next())
+								{
+									int j = rs1.getInt(1);
+									s1=rs1.getString(2);
+									status = rs1.getString(5);
+									
+									String query="select * from user where username='"+s1+"'"; 
+									Statement st=connection.createStatement();
+									ResultSet rs=st.executeQuery(query);
+									if( rs.next()==true )
+									{
+											s7=rs.getString(2);
+											s3=rs.getString(5);
+											s4=rs.getString(6);
+											s5=rs.getString(8);
+										
+											
+						
+					%>
+              <tr>
+                <td  width="136" height="54" align="center" valign="middle" class="style48" style="color:#FF00FF;">&nbsp;&nbsp;
+                    <%out.println(s1);%>                </td>
+                <td  width="155" height="54" align="center" valign="middle" class="style50">&nbsp;&nbsp;
+                    <%out.println(s3);%>                </td>
+                <td height="54" align="center"  valign="middle" class="style50">&nbsp;&nbsp;
+                    <%out.println(s4);%>                </td>
+                <td height="54" align="center"  valign="middle" class="style50">&nbsp;&nbsp;
+                    <%out.println(s5);%>                </td>
+                <%
+						if(status.equalsIgnoreCase("waiting"))
+						{
+						
+						%>
+                <td  width="96" valign="middle" height="54" style="color:#000000;"align="center"><a href="updaterequest1.jsp?rid=<%=j%>" class="style51">waiting</a></td>
+                <%
+						}
+						else
+						{
+						%>
+                <td  width="17" height="54"align="center" valign="middle" class="style7" style="color:#000000;"><span class="style11">
+                  <%out.println(status);%>
+                </span><span class="style11">&nbsp;</span></td>
+                <%
+						}
+						%>
+              </tr>
+              <%
+						}
+						}
+						connection.close();
+					}
+					catch(Exception e)
+					{
+						out.println(e.getMessage());
+					}
+					%>
+          </table>
+            <p align="right">&nbsp;</p>
+            <p align="right"><a href="UserMain.jsp" class="style11 style33"><strong>Back</strong></a></p>
+            <div class="clr">
+            <div align="right"></div>
+          </div>
+        </div>
+      </div>
+      <div class="sidebar">
+        <div class="searchform">
+          <form id="formsearch" name="formsearch" method="post" action="#">
+            <span>
+            <input name="editbox_search" class="editbox_search" id="editbox_search" maxlength="80" value="Search our ste:" type="text" />
+            </span>
+            <input name="button_search" src="images/search.gif" class="button_search" type="image" />
+          </form>
+        </div>
+        <div class="clr"></div>
+        <div class="gadget">
+          <h2 class="star"><span>Sidebar</span> Menu</h2>
+          <div class="clr"></div>
+          <ul class="sb_menu"><li><a href="ViewRequest.jsp">Home</a></li>
+            <li><a href="index.html">Log Out</a></li>
+          </ul>
+        </div>
+        <div class="gadget">
+          <h2 class="star">&nbsp;</h2>
+        </div>
+      </div>
+      <div class="clr"></div>
+    </div>
+  </div>
+  <div class="fbg"></div>
+  <div class="footer">
+    <div class="footer_resize">
+      <div style="clear:both;"></div>
+    </div>
+  </div>
+</div>
+<div align=center></div>
+</body>
+</html>

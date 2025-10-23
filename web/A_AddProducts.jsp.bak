@@ -1,0 +1,203 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>Adding Products..</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link href="css/style.css" rel="stylesheet" type="text/css" />
+<link rel="stylesheet" type="text/css" href="css/coin-slider.css" />
+<script type="text/javascript" src="js/cufon-yui.js"></script>
+<script type="text/javascript" src="js/cufon-aller.js"></script>
+<script type="text/javascript" src="js/jquery-1.4.2.min.js"></script>
+<script type="text/javascript" src="js/script.js"></script>
+<script type="text/javascript" src="js/coin-slider.min.js"></script>
+<style type="text/css">
+<!--
+.style8 {font-size: 20px}
+.style17 {font-size: 32px; color: #FF6600; }
+.style18 {color: #FF00FF}
+.style12 {color: #0000FF}
+.style35 {
+	font-size: 25px;
+	color: #FF00FF;
+}
+.style84 {
+	font-size: 12px;
+	color: #0000FF;
+}
+.style85 {color: #0000FF; font-weight: bold; }
+.style92 {color: #FF0000; font-weight: bold; font-size: 14px; }
+.style93 {
+	color: #FF00FF;
+	font-weight: bold;
+	font-size: 10px;
+}
+.style94 {font-size: 18px; color: #FF6600; }
+-->
+</style>
+</head>
+<body>
+<div class="main">
+  <div class="header">
+    <div class="header_resize">
+      <div class="menu_nav">
+        <ul>
+          <li><a href="index.html"><span>Home </span></a></li>
+          <li><a href="UserLogin.jsp"><span>User</span></a></li>
+          <li class="active"><a href="AdminLogin.jsp"><span>ESeller</span></a></li>
+        </ul>
+      </div>
+      <div class="logo style8">
+        <p class="style17"><span class="style94">Mining Users Trust From E-Commerce Reviews Based on Sentiment Similarity Analysis</span></p>
+        <p class="style17"> </p>
+      </div>
+      <div class="clr"></div>
+      <div class="slider">
+        <div id="coin-slider"> <a href="#"><img src="images/slide1.jpg" width="940" height="271" alt="" /> </a> <a href="#"><img src="images/slide2.jpg" width="940" height="271" alt="" /> </a> <a href="#"><img src="images/slide3.jpg" width="940" height="271" alt="" /> </a> </div>
+      </div>
+      <div class="clr"></div>
+    </div>
+  </div>
+  <div class="content">
+    <div class="content_resize">
+      <div class="mainbar">
+        <div class="article">
+          <h2 class="style18"><span class="style12"><span class="style35"> Adding Products</span></span>..</h2>
+          <p class="infopost">&nbsp;</p>
+          <div class="clr"></div>
+            <p>&nbsp;</p>
+            <form action="A_AddProducts1.jsp" method="post" enctype="multipart/form-data">
+              <%@page import ="java.util.*"%>
+              <%@ include file="connect.jsp" %>
+              <%
+	
+      	try 
+	{
+      		
+      		 ArrayList a1=new ArrayList();
+      		
+      		 
+           
+           String query="select category FROM category"; 
+           Statement st=connection.createStatement();
+           ResultSet rs=st.executeQuery(query);
+          
+	   while ( rs.next() )
+	   {
+			a1.add(rs.getString("category"));
+		
+	   }
+	   
+		
+		
+%>
+              <table width="433" border="0" align="center">
+                <tr>
+                  <td width="166" height="33" bgcolor="#FFFF00"><div align="justify" class="style92"><span class="style3">Select  Category </span></div></td>
+                  <td width="257"><label>
+                    <select id="s1" name="category">
+                      <option>--Select--</option>
+                      <% 
+							for(int i=0;i<a1.size();i++)
+							{
+							 
+								 %>
+                      <option><%= a1.get(i)%></option>
+                      <%
+							}
+							%>
+                    </select>
+                  </label></td>
+                </tr>
+                <tr>
+                  <td height="36" bgcolor="#FFFF00"><div align="justify" class="style92"><span class="style3 "> Product Title </span> </div></td>
+                  <td><label>
+                    <input type="text" id="t1" name="title" />
+                    <br />
+                    <span class="style93">(Make Use Of UnderScores)                    </span></label></td>
+                </tr>
+                <tr>
+                  <td height="44" bgcolor="#FFFF00"><div align="justify" class="style92"><span class="style3 ">Price </span></div></td>
+                  <td><label>
+                    <input type="text" id="t3" name="price" />
+                  </label></td>
+                </tr>
+                <tr>
+                  <td height="53" bgcolor="#FFFF00"><div align="justify" class="style92"><span class="style3 ">Index</span></div></td>
+                  <td><label>
+                    <textarea name="indexs" cols="40" rows="2" id="textarea"></textarea>
+                  </label></td>
+                </tr>
+                <tr>
+                  <td height="51" bgcolor="#FFFF00"><div align="justify" class="style92"><span class="style3 "> Description </span></div></td>
+                  <td><label>
+                    <textarea name="des" cols="40" rows="5" id="t2"></textarea>
+                  </label></td>
+                </tr>
+                <tr>
+                  <td height="38" bgcolor="#FFFF00"><div align="justify" class="style92"><span class="style3 "> Select Image </span></div></td>
+                  <td><input type="file" id="userImage" name="image" style="width:100%" /></td>
+                </tr>
+                <tr>
+                  <td bgcolor="#FFFF00">&nbsp;</td>
+                  <td>&nbsp;</td>
+                </tr>
+                <tr>
+                  <td height="26">&nbsp;</td>
+                  <td><div align="left">
+                      <input type="submit" name="Submit" value="Add Product" />
+                  </div></td>
+                </tr>
+              </table>
+              <p>
+                <%
+
+	   
+
+           connection.close();
+          }
+         
+          catch(Exception e)
+          {
+            out.println(e.getMessage());
+          }
+%>
+              </p>
+          </form>
+            <p align="right" class="style84"><a href="AdminMain.jsp" class="style85">Back</a></p>
+          <div class="clr"></div>
+        </div>
+      </div>
+      <div class="sidebar">
+        <div class="searchform">
+          <form id="formsearch" name="formsearch" method="post" action="#">
+            <span>
+            <input name="editbox_search" class="editbox_search" id="editbox_search" maxlength="80" value="Search our ste:" type="text" />
+            </span>
+            <input name="button_search" src="images/search.gif" class="button_search" type="image" />
+          </form>
+        </div>
+        <div class="clr"></div>
+        <div class="gadget">
+          <h2 class="star"><span>Sidebar</span> Menu</h2>
+          <div class="clr"></div>
+          <ul class="sb_menu">
+            <li>
+              <p><a href="A_AddProducts.jsp">Home</a></p>
+              <p><a href="index.html">Log Out</a></p>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div class="clr"></div>
+    </div>
+  </div>
+  <div class="fbg"></div>
+  <div class="footer">
+    <div class="footer_resize">
+      <div style="clear:both;"></div>
+    </div>
+  </div>
+</div>
+<div align=center></div>
+</body>
+</html>
